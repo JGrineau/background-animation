@@ -58,7 +58,7 @@ function random(min, max) {
 const balls = [];
 
 while (balls.length < 300) {
-  let size = 4;
+  let size = 1;
   const ball = new Ball(
     random(size, width - size),
     random(size, height - size),
