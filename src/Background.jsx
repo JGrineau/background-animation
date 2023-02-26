@@ -30,20 +30,13 @@ class Ball {
   // create draw func
   drawBall() {
     ctx.beginPath(); // start drawing
-    ctx.fillStyle = this.color; // fill ball shape with given color
-
-    // x and y is center of the ball
-    // size is radius of the ball
-    // 0 is a start point of degree around radius of the ball
-    // 2 * Math.PI is an end point which is equivalent to 360 degree
+    ctx.fillStyle = this.color; 
     ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
     ctx.fill(); // finish drawing
   }
 
   // create update func
   updateBall() {
-    // if x and y position is greater than or less than
-    // browser viewport than balls turn another direction
     if (this.x + this.size >= width || this.x - this.size <= 0) {
       this.velx = -this.velx;
     }
@@ -51,9 +44,6 @@ class Ball {
     if (this.y + this.size >= height || this.y - this.size <= 0) {
       this.vely = -this.vely;
     }
-
-    // x and y velocity added to x and y coordinate
-    // everytime updateBall func is called
     this.x += this.velx;
     this.y += this.vely;
   }
@@ -65,14 +55,10 @@ function random(min, max) {
   return num;
 }
 
-//   create some balls and store in an array
 const balls = [];
 
 while (balls.length < 300) {
   let size = 4;
-
-  // create a new instance of Ball class
-  // now replace static number with random number
   const ball = new Ball(
     random(size, width - size),
     random(size, height - size),
@@ -87,7 +73,6 @@ while (balls.length < 300) {
 
 //   create loop func
 function loop() {
-  // cover the previous frame's drawing before the next one is drawn
   ctx.fillStyle = "#fff";
   ctx.fillRect(0, 0, width, height);
 
@@ -96,13 +81,9 @@ function loop() {
     balls[i].drawBall();
     balls[i].updateBall();
   }
-
-  // lets calls loop func itself over and over again
-  //  and make animation smooth
   requestAnimationFrame(loop);
 }
 
-// finaly call the loop func once ot start
 loop();
 
   return (
